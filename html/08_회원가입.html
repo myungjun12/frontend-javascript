@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>회원가입</title>
+        <style>
+            button {
+                border: 3px solid black;
+                background-color: white;
+            }
+            button:hover {
+                font-weight: bold;
+                background-color: black;
+                color: white;
+                box-shadow: 0 0 20px gray;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+    <header>
+        <h1>회원가입</h1>
+    </header>
+    <nav></nav>
+
+    <div class="main">
+        
+        <form>
+        <div>
+        <label>이름 : </label>
+        <input type="text" id="user_name"/>
+        </div>
+        
+        <div>
+        <label>이메일 : </label>
+        <input type="email" id="user_email" required>
+        </div>
+        
+        <div>
+        <label>비밀번호 : </label>
+        <input type="password" id="user_pw"/>
+        </div>
+        
+        <div>
+        <label>비밀번호 확인 : </label>
+        <input type="password" id="user_pw_confirm"/>
+        </div>
+
+        <button onclick="이름이메일확인(),비밀번호일치여부()">회원가입</button>
+
+        <script>
+            const 이름값 = document.getElementById("user_name");
+            const 이메일값 = document.getElementById("user_email");
+            const 비밀번호값 = document.getElementById("user_pw");
+            const 비밀번호확인값 = document.getElementById("user_pw_confirm");
+
+           
+            function 이름이메일확인(){
+                
+                const name = 이름값.value;
+                const email = 이메일값.value;
+                const pw1 = 비밀번호값.value;
+                
+                if(이름 =="동그라미" && 이메일 == "one@kh.kh"){
+                   alert("이미 가입한 회원입니다. 로그인해주세요.");
+                    }else {
+                        alert("가입하지 않은 회원입니다.");
+                    }
+            }
+            function 비밀번호일치여부(){
+                const pw = 비밀번호값.value;
+                const pw_confirm = 비밀번호확인값.value;
+
+                if(pw == pw_confirm){
+                    alert("비밀번호가 일치합니다.");
+                }else{
+                    alert("비밀번호가 일치하지 않습니다.");
+                }
+            }
+        </script>
+
+
+
+    </form>
+    </div>
+    
+
+    </body>
+</html>
