@@ -10,8 +10,8 @@
             }
             button:hover {
                 font-weight: bold;
-                background-color: black;
-                color: white;
+                background-color: darkgray;
+                color: black;
                 box-shadow: 0 0 20px gray;
                 cursor: pointer;
             }
@@ -46,7 +46,7 @@
         <input type="password" id="user_pw_confirm"/>
         </div>
 
-        <button onclick="이름이메일확인(),비밀번호일치여부()">회원가입</button>
+        <button onclick="비밀번호일치여부(),이름이메일확인()">회원가입</button>
 
         <script>
             const 이름값 = document.getElementById("user_name");
