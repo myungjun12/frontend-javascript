@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>토글추가</title>
+    <style>
+        h1 {text-align: center;}
+        #mainbox {
+          width: 300px;
+          height: 150px;
+          background-color: aliceblue;
+          border: 2px solid lightpink;
+          text-align: center;
+          margin: 0 auto;
+        }
+        .hidden {
+            display: none;
+        }
+        .버튼 {
+            text-align: center;
+            margin: 5px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>회원가입</h1>
+    <form>
+        <div id="mainbox">
+            이름 : 
+            <input type="text" id="user_name" required/><br>
+            이메일 : 
+            <input type="email" id="user_email" required/><br>
+            비밀번호 : 
+            <input type="password" id="user_pw" required/><br>
+            비밀번호확인 : 
+            <input type="password" id="user_pw_confirm" required/><br>
+            
+            <p id="약관">제2조(용어의 정의)
+                본 약관에서 사용하는 용어의 정의는 다음과 같습니다.
+                
+                ① 이용자 : 본 약관에 따라 당 사이트가 제공하는 서비스를 이용할 수 있는 자. </p>
+        <script>
+           
+            function 회원가입절차(){
+                const name = document.getElementById("user_name");
+                const email = document.getElementById("user_email");
+                const pw = document.getElementById("user_pw");
+                const pw확인 = document.getElementById("user_pw_confirm");
+               
+                const name값 = name.value;
+                const email값 = email.value;
+                const pw값 = pw.value;
+                const pw확인값 = pw확인.value;
+        
+            if(name값 =="고영희" && email값 == "one@kh.kh"){
+                alert("이미 가입한 회원입니다. 로그인해주세요.");
+                }else {
+                    alert("가입하지 않은 회원입니다.");
+                }
+
+            if(pw값 == null || pw확인값 == null || name값 == null || email값 == null){
+                alert("올바른입력이 아닙니다.");
+            }else{
+               if(pw값==pw확인값){
+                alert("비밀번호가 일치합니다.");
+                alert("회원가입이 완료되었습니다.");
+               }else{
+                alert("비밀번호가 일치 하지않습니다.");
+               }
+            }
+            
+            }
+            function 약관보이기숨기기(){
+               const box = document.getElementById("mainbox");
+
+               if(box.classList.contains("hidden")){
+                    box.classList.remove("hidden");
+               }else{
+                    box.classList.add("hidden");
+               }
+            }
+            function 이용약관(){
+                const box = document.getElementById("약관");
+
+                if(box.classList.contains("hidden")){
+                    box.classList.remove("hidden");
+                }else{
+                    box.classList.add("hidden");
+                }
+            }
+        </script>
+        </div>
+        <div class="버튼">
+        <button onclick="회원가입절차()">회원가입</button>
+        <button onclick="약관보이기숨기기()">전체 숨김/펼침</button>
+        <button onclick="이용약관()">이용약관 숨김/펼침</button>
+        </div>
+    </form>
+</body>
+</html>
