@@ -88,7 +88,7 @@
                     } else {
                         //돈을 출금하기 전에 잔액보다 보유하고 있는 금액이 적은지 확인
                         if(출금액 <= 잔액){
-                            잔액 -= 출금액;
+                            잔액 -= 출금액;     
                             document.getElementById("output").innerText= 잔액;
                         } else{
                             alert("잔액이 부족합니다.");
