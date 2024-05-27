@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>이미지 글 작성하기</title>
+    <!--jquery bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script> 
+    <style>
+        .이미지프리뷰 {
+            width: 200px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!--네비게이션-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
+        <div class="container-fluid"> <!--fluid 세로로 나열된 것들 모두 가로로 한줄 정렬-->
+          <a class="navbar-brand" href="#">이미지</a>
+          
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button> <!--아래 collapse를 지우면 좌측묶음 정렬은 해제 되는데 햄버거가 정상 작동안함....-->
+          
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                            <!--margin-start auto 왼쪽에 여백을 최대한 많이 제공-->
+            <ul class="navbar-nav ms-auto"> <!--ms auto : 모든 태그를 가능한 오른쪽으로 정렬-->
+       
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#">Shop</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Cart<span class="badge bg-secondary">0</span></a>
+            </li>
+           
+            </ul>
+
+          </div>
+        </div>
+      </nav>
+    <!--글 작성 공간 container 만들어주기-->
+    <div class="container">
+        <div class="mb-3">
+            <label class="form-label">제목</label>
+            <input type="text" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">작성자</label>
+            <input type="text" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">내용</label>
+            <textarea class="form-control" rows="5" cols="20" required></textarea>
+        </div>
+        <div>
+        <label class="form-label">이미지업로드</label>
+        <input id="이미지가져오기" type="file" class="form-control" accept="image/*" multiple>
+    </div>
+
+    <div id="이미지미리보기" class="mb-3">
+        <!--추후 img 태그가 보여질 예정-->
+    </div>
+</div>
+    <!--footer추가하기-->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2024 브랜드명. All Rights Reserved.</p>
+            <p><a href="">개인정보처리방침</a>|<a href="">이용약관</a></p>
+        </div>
+    </footer>
+    <script>
+        //이미지 여러장 보여주는 for문 추가
+        $(document).ready(function(){
+            $("#이미지가져오기").change(function(){ //input 태그 바라보기
+                const 파일들 = this.files; // input에서 선택한 이미지들 가져오기
+
+                //기존에 선택된 이미지가 존재한다면 이미지를 없애고 새로 선택한 이미지들 가져오기
+                $("#이미지미리보기").empty();
+                //만약에 이미지를 가져온 것이 존재한다면 !!
+                if(파일들){
+                    //for문을 활용해서 이미지 가져오기 length을 활용해서 가져오기
+                    //      const = 상수같은 존재
+                    //for문에서 주로 사용하는 자료형은 let = 변수같은 존재
+                    // 선택된 파일들의 개수 
+                    for(let i = 0; i < 파일들.length; i++){
+                        const file = 파일들[i]; // i가 0번째부터 최대 최대개수-1한 파일까지 모두 가져오기
+                        const 파일읽기 = new FileReader();
+
+                        //파일 가져왔으면 파일을 읽고 보여주기 시작! 
+                        파일읽기.onload = function(e){
+                            // div 안에서 img를 생성할 준비 시작//생성된(가져온) 이미지 src 주소결과 보여주기
+                            const 이미지태그생성 = $('<img>').attr('src',e.target.result).addClass('이미지프리뷰');
+                            // 이미지 미리보기 div에 생성된 이미지 추가
+                            $("#이미지미리보기").append(이미지태그생성);
+                        }
+                        // 최종으로 사람들 눈에 이미지 보여지게 만들어줌
+                        파일읽기.readAsDataURL(file);
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>
