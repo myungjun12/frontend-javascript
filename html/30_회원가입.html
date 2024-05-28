@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>회원가입</title>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script> 
+    </head>
+    <body>                                              <!--autocomplete="off 자동완성기능 off-->
+        <form action="30_회원가입결과보기.html" method="get" autocomplete="off"> <!--***action 경로 설정/설정 경로에서 get으로 가져오겠다.***-->
+            <label>이름 : </label>
+            <input type="text" name="signName">
+            <br>
+            <label>나이 : </label>
+            <input type="number" name="signAge">
+            <br>
+            <label>아이디 : </label>
+            <input type="text" name="signId" id="Id">
+            <br>
+            <label>비밀번호 : </label>
+            <input type="password" id="Pw1">
+            <!--회원가입 후 비밀번호는 유출되면 안되기 때문에 눈으로 보게끔 전달x-->
+            <br>
+            <label>비밀번호 확인 : </label>
+            <input type="password" id="Pw2">
+            <button type="submit" onclick="회원가입버튼(event)">회원가입완료</button>
+        </form>
+    </body>
+    <script>
+        function 회원가입버튼(event){
+            const 정규식 = /^[0-9a-z]{4,10}$/;
+            const 아이디 = $("#Id").val();
+            if(!정규식.test(아이디)){
+                alert("올바른 아이디 형식으로 입력해주세요.");
+                return;
+            }
+            const 비밀번호1 = $("#pw1").val(); // jQuery 사용할때는 value = val();
+            const 비밀번호2 = $("#pw2").val();
+            if(비밀번호1!==비밀번호2){
+                alert("비밀번호가 일치하지 않습니다.");
+                event.preventDefault(); //form 제출을 막아버리는 이벤트 return과 동일.?
+          
+            alert("회원가입이 완료되었습니다.");
+        }
+    }
+    </script>
+</html>
